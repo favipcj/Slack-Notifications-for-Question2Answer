@@ -3,7 +3,7 @@
 	Slack Notifications
 	File: qa-plugin/slack-notifications/qa-slack-notifications-event.php
 	Version: 0.5
-	Date: 2017-12-10
+	Date: 2019-07-06
 	Description: Event module class for Slack notifications plugin
 */
 
@@ -17,10 +17,13 @@ class qa_slack_notifications_event
     }
     public function process_event($event, $userid, $handle, $cookieid, $params)
     {
-        $this->send_mattermost_notification($event, $userid, $handle, $params);
+		if($event == 'q_post'){
+		
+        $this->send_slack_notification($event, $userid, $handle, $params);
+		}
     }
     
-    private function send_mattermost_notification($event, $userid, $handle, $params)
+    private function send_slack_notification($event, $userid, $handle, $params)
     {
         
         $title        = $params['title'];
@@ -34,7 +37,7 @@ class qa_slack_notifications_event
         } else {
             $content .= 'New Question';
         }
-        $content .= ':* ' . $title . ' - ' . $title_link;
+        $content .= ':* <' . $title_link . '|' .$title .'>';
         if (!$hide_user) {
 			$site_url     = qa_opt('site_url');
 			$username     = $this->get_user_full_name($handle);
