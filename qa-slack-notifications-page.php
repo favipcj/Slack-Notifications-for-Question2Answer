@@ -14,7 +14,8 @@ class qa_slack_notifications_page
         $saved = false;
         if (qa_clicked('general_save_button')) {
             // save the preferences
-            qa_opt('slack_notifications_webhook_url', qa_post_text('slack_notifications_webhook_url'));
+            qa_opt('slack_notifications_bot_url', qa_post_text('slack_notifications_bot_url'));
+            qa_opt('slack_notifications_token', qa_post_text('slack_notifications_token'));
             qa_opt('slack_notifications_title', qa_post_text('slack_notifications_title'));
             qa_opt('slack_notifications_is_show_user', qa_post_text('slack_notifications_is_show_user'));
             
@@ -26,9 +27,14 @@ class qa_slack_notifications_page
             'ok' => $saved ? 'Slack Notification preferences saved' : null,
             'fields' => array(
                 array(
-                    'label' => 'Slack Webhook URL',
-                    'value' => qa_opt('slack_notifications_webhook_url'),
-                    'tags' => 'NAME="slack_notifications_webhook_url"'
+                    'label' => 'Slack Bot URL',
+                    'value' => qa_opt('slack_notifications_bot_url'),
+                    'tags' => 'NAME="slack_notifications_bot_url"'
+                ),
+                array(
+                    'label' => 'Slack Boot Token',
+                    'value' => qa_opt('slack_notifications_token'),
+                    'tags' => 'NAME="slack_notifications_token"'
                 ),
                 array(
                     'label' => 'New Question title',

@@ -3,7 +3,7 @@
 	Plugin Name: Slack Notifications
 	Plugin URI: https://www.nioya.com/
 	Plugin Description: Sends Slack notifications of new questions.
-	Plugin Version: 0.1
+	Plugin Version: 0.2
 	Plugin Date: 2019-04-07
 	Plugin Author: nioya
 	Plugin Author URI: https://github.com/nioya
